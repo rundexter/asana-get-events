@@ -4,23 +4,22 @@
 {
     //Required. Inputs the module expects.
     "inputs": [
-        //e.g.
-        /*
         {
-            "id": "from",
-            "title":"From"
+            "id": "resource",
+            "title":"Required: A resource ID to subscribe to"
+        },
+        {
+            "id": "sync",
+            "title":"A sync token received from the last request"
         }
-        */
     ],
     //Required. Outputs the module emits.
     "outputs": [
-      //e.g.
-      /*
         {
-            "id": "from",
-            "title":"From"
+            "id": "data",
+            "title":"data"
         }
-      */
     ],
-    "title": "Asana Get Events" /* Required.A display name for the module */
+    /* Required.A display name for the module */
+    "title": "Asana Get Events"
 }

@@ -1,12 +1,13 @@
 {
-    "name": "asana-get-events",
-    "version": "0.0.1",
-    "description": "",
-    "main": "index.js",
-    "author": "Alexander",
-    "license": "ISC",
-    "private": true,
-    "dependencies": {
-        "lodash": "^3.9.3"
-    }
+  "name": "asana-get-events",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "author": "Alexander",
+  "license": "ISC",
+  "private": true,
+  "dependencies": {
+    "lodash": "^3.10.1",
+    "request": "^2.67.0"
+  }
 }
