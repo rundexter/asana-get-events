@@ -109,7 +109,13 @@ module.exports = {
 
                 this.apiRequest('get', 'events', _.merge(step.inputs(), {sync: body.sync}), auth, function (error, responce, body) {
 
-                    this.complete(this.pickResult(body, globalPickResult));
+                    if (error || body.errors) {
+
+                        this.fail(error || body.errors);
+                    } else {
+
+                        this.complete(this.pickResult(body, globalPickResult));
+                    }
                 }.bind(this));
             } else {
 
