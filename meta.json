@@ -14,13 +14,6 @@
         }
     ],
     //Required. Outputs the module emits.
-    "parent": null,
-        "created_at": "2015-12-07T13:34:52.565Z",
-        "action": "changed",
-        "type": "task",
-        "user_id": 69990099169912,
-        "user_name": "Alexandr Zaretskii",
-        "resource_name": "Some"
     "outputs": [
         {
             "id": "created_at",
