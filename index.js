@@ -118,7 +118,7 @@ module.exports = {
 
             if (body.errors && body.sync) {
 
-                this.apiRequest('get', 'events', _.merge(step.inputs(), {sync: body.sync}), auth, function (error, responce, body) {
+                this.apiRequest('get', 'events', _.merge(this.prepareStringInputs(step.inputs(), inputAttributes), {sync: body.sync}), auth, function (error, responce, body) {
 
                     if (error || body.errors) {
 
