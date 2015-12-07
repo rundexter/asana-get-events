@@ -4,7 +4,6 @@ var request = require('request').defaults({
 });
 var globalPickResult = {
     'data': {
-        key: 'data',
         fields: {
             'parent': 'parent',
             'created_at': 'created_at',
@@ -28,33 +27,62 @@ module.exports = {
      * @param pickResult
      * @returns {*}
      */
-    pickResult: function (output, pickResult) {
+    pickResult: function (output, pickTemplate) {
         var result = {};
+        // map template keys
+        _.map(_.keys(pickTemplate), function (templateKey) {
 
-        _.map(_.keys(pickResult), function (resultVal) {
+            var oneTemplateObject = pickTemplate[templateKey];
+            var outputKeyValue = _.get(output, templateKey, undefined);
 
-            if (_.has(output, resultVal)) {
+            if (_.isUndefined(outputKeyValue)) {
 
-                if (_.isObject(pickResult[resultVal])) {
-                    if (_.isArray(_.get(output, resultVal))) {
+                return result;
+            }
+            // if template key is object - transform, else just save
+            if (_.isObject(oneTemplateObject)) {
+                // if data is array - map and transform, else once transform
+                if (_.isArray(outputKeyValue)) {
 
-                        if (!_.isArray(result[pickResult[resultVal].key])) {
-                            result[pickResult[resultVal].key] = [];
-                        }
-
-                        _.map(_.get(output, resultVal), function (inOutArrayValue) {
-
-                            result[pickResult[resultVal].key].push(this.pickResult(inOutArrayValue, pickResult[resultVal].fields));
-                        }, this);
-                    } else if (_.isObject(_.get(output, resultVal))){
-
-                        result[pickResult[resultVal].key] = this.pickResult(_.get(output, resultVal), pickResult[resultVal].fields);
-                    }
+                    result = this._mapPickArrays(outputKeyValue, oneTemplateObject);
                 } else {
-                    _.set(result, pickResult[resultVal], _.get(output, resultVal));
+
+                    result[oneTemplateObject.key] = this.pickResult(outputKeyValue, oneTemplateObject.fields);
                 }
+            } else {
+
+                _.set(result, oneTemplateObject, outputKeyValue);
             }
         }, this);
+
+        return result;
+    },
+
+    /**
+     * System func for pickResult.
+     *
+     * @param mapValue
+     * @param templateObject
+     * @returns {*}
+     * @private
+     */
+    _mapPickArrays: function (mapValue, templateObject) {
+
+        var arrayResult = [],
+            result = templateObject.key? {} : [];
+
+        _.map(mapValue, function (inOutArrayValue) {
+
+            arrayResult.push(this.pickResult(inOutArrayValue, templateObject.fields));
+        }, this);
+
+        if (templateObject.key) {
+
+            result[templateObject.key] = arrayResult;
+        } else {
+
+            result = arrayResult;
+        }
 
         return result;
     },
