@@ -44,7 +44,9 @@
             "title":"Parent"
         }
     ],
+    "providers": [{
+        "name": "asana"
+    }],
     "icon": "tasks",
-    /* Required.A display name for the module */
     "title": "Asana Get Events"
 }

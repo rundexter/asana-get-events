@@ -63,8 +63,7 @@ module.exports = _.merge({
              */
             input: {
                 //Replace VAR1 with the name of an expected input, and add more inputs as needed.
-                resource: '70058652167443',
-                sync: '31b096195eaccb28e4c38264550fa88d'
+                resource: '70058652167442'
             }
         }
     }
