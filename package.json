@@ -1,13 +1,17 @@
 {
-  "name": "asana-get-events",
-  "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
-  "author": "Alexander",
-  "license": "ISC",
-  "private": true,
-  "dependencies": {
-    "lodash": "^3.10.1",
-    "request": "^2.67.0"
-  }
+   "name": "asana-get-events",
+   "version": "0.0.1",
+   "description": "Returns the full record for all events that have occurred since the sync token was created",
+   "main": "index.js",
+   "author": "Run Dexter, Inc",
+   "license": "MIT",
+   "private": true,
+   "dependencies": {
+      "lodash": "^3.10.1",
+      "request": "^2.67.0"
+   },
+   "repository": {
+      "type": "git",
+      "url": "https://github.com/rundexter/asana-get-events"
+   }
 }
